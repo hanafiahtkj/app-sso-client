@@ -84,10 +84,11 @@
     function sendToServer(result) {
         var user = result['data'];
         var formData = new FormData();
-        formData.append('_token', '{{ csrf_token() }}');
-        formData.append('name', user['name']);
-        formData.append('email', user['email']);
+        for ( var key in user ) {
+            formData.append(key, user[key]);
+        }
         formData.append('id_sso', user['id']);
+        formData.append('_token', '{{ csrf_token() }}');
         $.ajax({
             type: "POST",
             url: "{{ route('sso.register') }}",
