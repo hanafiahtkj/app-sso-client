@@ -18,7 +18,7 @@ Route::get('/sso/is-register/{id_sso}', function ($id_sso) {
     return response()->json([
         'status'    => ($user != null) ? true : false,
     ]);
-})->name('sso.register');
+})->name('sso.is_register');
 
 Route::post('/sso/register', [RegisteredLoginController::class, 'store'])
     ->middleware('guest')
